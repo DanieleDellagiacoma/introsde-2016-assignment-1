@@ -50,15 +50,57 @@ public void printPersonFromWeight(int weight, String operator) throws XPathExpre
 The method evaluates the compiled XPath expression in database.xml and returns the result in a list of node. Later, it prints the result.
 For the second part of the assign three different classes were used: **XMLMarshaller**, **XMLUnMarshaller** and **JSONMarshaller**. To work correctly, these classes need the classes generated from people.xsd using XJC.
 The **XMLMarshaller** instantiates a new JAXB Context. After that, it creates a new marshaller using the JAXB Context and set its properties. Now, people can be created through the generated classes using java.
-IMMAGINE
+
+```java
+// Create a JaxBContext
+			JAXBContext jaxbContext = JAXBContext.newInstance("peoplestore.generated");
+			// Create the Marshaller Object using the JaxB Context
+			Marshaller marshaller = jaxbContext.createMarshaller();
+			// Set it to true if you need the XML output to formatted
+			marshaller.setProperty("jaxb.formatted.output", new Boolean(true));
+			
+			ObjectFactory factory = new ObjectFactory();
+  ```
+  
 Finally, a JAXB Element of type People is created and used to print the content and save it to **people.xml** file.
-IMMAGINE
+
+```java
+
+			JAXBElement<PeopleType> peopleElement = factory.createPeople(people);
+			// Marshal the People object to XML and print the output to console
+			marshaller.marshal(peopleElement, System.out);
+			// Marshal the People object to XML and write the output to the people.xml file
+			marshaller.marshal(peopleElement, new FileOutputStream(xmlDocument));
+  ```
+  
 The **JSONMarshaller** is the same as **XMLMarshaller**, except that it uses **MOXy** library to format the otput object as a json. It do that setting the **MarshallerProperties** in this way:
-IMMAGINE
+
+```java
+		// Set the Marshaller media type to JSON
+		marshaller.setProperty(MarshallerProperties.MEDIA_TYPE, "application/json");
+		// Set it to true if you need to include the JSON root element in the JSON output
+		marshaller.setProperty(MarshallerProperties.JSON_INCLUDE_ROOT, true);
+  ```
+  
 For this reason is necessary to enable **MOXy** at the beginning
-IMMAGINE
+
+```java
+		//enables MOXy
+		System.setProperty("javax.xml.bind.context.factory", "org.eclipse.persistence.jaxb.JAXBContextFactory");
+  ```
+  
 On the other hand, the **XMLUnMarshaller** create an JAXB context and the UnMarshaller object using the context. After that, it uses **people.xsd** schema to validate subsequent unmarshal operations. Now, it can use a People element to get the value of each person in the file **people.xml**.
-IMMAGINE
+
+```java
+// Create a JaxBContext
+			JAXBContext jaxbContext = JAXBContext.newInstance("peoplestore.generated");
+			// Create the Unmarshaller Object using the JaxB Context
+			Unmarshaller unMarshaller = jaxbContext.createUnmarshaller();
+			SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
+			Schema schema = schemaFactory.newSchema(new File("people.xsd"));
+			unMarshaller.setSchema(schema);
+  ```
+  
 Finally, it prints all the person in **people.xml** and their information.
 
 ## DEPLOYMENT
