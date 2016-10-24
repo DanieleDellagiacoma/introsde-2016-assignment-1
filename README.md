@@ -20,6 +20,8 @@ The first part is based on the third laboratory session. In particular, it was r
             <bmi>31.14</bmi>
         </healthprofile>
     </person>
+    ....   
+</people>   
 ```
 
 The third point concerns a function **printHealthProfile(personID)** that accepts an ID as parameter and prints the HealthProfile of the person with that ID. Finally, it is needed another function **printPersonFromWeight(weight, operator)** which accepts a weight and an operator (=, > or <) as parameters and prints people that fulfill that condition.
@@ -53,13 +55,13 @@ The **XMLMarshaller** instantiates a new JAXB Context. After that, it creates a 
 
 ```java
 // Create a JaxBContext
-			JAXBContext jaxbContext = JAXBContext.newInstance("peoplestore.generated");
-			// Create the Marshaller Object using the JaxB Context
-			Marshaller marshaller = jaxbContext.createMarshaller();
-			// Set it to true if you need the XML output to formatted
-			marshaller.setProperty("jaxb.formatted.output", new Boolean(true));
+JAXBContext jaxbContext = JAXBContext.newInstance("peoplestore.generated");
+// Create the Marshaller Object using the JaxB Context
+Marshaller marshaller = jaxbContext.createMarshaller();
+// Set it to true if you need the XML output to formatted
+marshaller.setProperty("jaxb.formatted.output", new Boolean(true));
 			
-			ObjectFactory factory = new ObjectFactory();
+ObjectFactory factory = new ObjectFactory();
   ```
   
 Finally, a JAXB Element of type People is created and used to print the content and save it to **people.xml** file.
