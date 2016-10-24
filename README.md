@@ -47,7 +47,7 @@ public void printPersonFromWeight(int weight, String operator) throws XPathExpre
 		for (int i = 0; i < nodes.getLength(); i++) {
 			System.out.println(nodes.item(i).getTextContent());
 		}
-	}
+}
   ```
 The method evaluates the compiled XPath expression in database.xml and returns the result in a list of node. Later, it prints the result.
 For the second part of the assign three different classes were used: **XMLMarshaller**, **XMLUnMarshaller** and **JSONMarshaller**. To work correctly, these classes need the classes generated from people.xsd using XJC.
@@ -67,28 +67,27 @@ ObjectFactory factory = new ObjectFactory();
 Finally, a JAXB Element of type People is created and used to print the content and save it to **people.xml** file.
 
 ```java
-
-			JAXBElement<PeopleType> peopleElement = factory.createPeople(people);
-			// Marshal the People object to XML and print the output to console
-			marshaller.marshal(peopleElement, System.out);
-			// Marshal the People object to XML and write the output to the people.xml file
-			marshaller.marshal(peopleElement, new FileOutputStream(xmlDocument));
+JAXBElement<PeopleType> peopleElement = factory.createPeople(people);
+// Marshal the People object to XML and print the output to console
+marshaller.marshal(peopleElement, System.out);
+// Marshal the People object to XML and write the output to the people.xml file
+marshaller.marshal(peopleElement, new FileOutputStream(xmlDocument));
   ```
   
 The **JSONMarshaller** is the same as **XMLMarshaller**, except that it uses **MOXy** library to format the otput object as a json. It do that setting the **MarshallerProperties** in this way:
 
 ```java
-		// Set the Marshaller media type to JSON
-		marshaller.setProperty(MarshallerProperties.MEDIA_TYPE, "application/json");
-		// Set it to true if you need to include the JSON root element in the JSON output
-		marshaller.setProperty(MarshallerProperties.JSON_INCLUDE_ROOT, true);
+// Set the Marshaller media type to JSON
+marshaller.setProperty(MarshallerProperties.MEDIA_TYPE, "application/json");
+// Set it to true if you need to include the JSON root element in the JSON output
+marshaller.setProperty(MarshallerProperties.JSON_INCLUDE_ROOT, true);
   ```
   
 For this reason is necessary to enable **MOXy** at the beginning
 
 ```java
-		//enables MOXy
-		System.setProperty("javax.xml.bind.context.factory", "org.eclipse.persistence.jaxb.JAXBContextFactory");
+//enables MOXy
+System.setProperty("javax.xml.bind.context.factory", "org.eclipse.persistence.jaxb.JAXBContextFactory");
   ```
   
 On the other hand, the **XMLUnMarshaller** create an JAXB context and the UnMarshaller object using the context. After that, it uses **people.xsd** schema to validate subsequent unmarshal operations. Now, it can use a People element to get the value of each person in the file **people.xml**.
