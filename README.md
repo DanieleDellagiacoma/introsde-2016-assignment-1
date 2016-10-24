@@ -94,15 +94,16 @@ On the other hand, the **XMLUnMarshaller** create an JAXB context and the UnMars
 
 ```java
 // Create a JaxBContext
-			JAXBContext jaxbContext = JAXBContext.newInstance("peoplestore.generated");
-			// Create the Unmarshaller Object using the JaxB Context
-			Unmarshaller unMarshaller = jaxbContext.createUnmarshaller();
-			SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
-			Schema schema = schemaFactory.newSchema(new File("people.xsd"));
-			unMarshaller.setSchema(schema);
+JAXBContext jaxbContext = JAXBContext.newInstance("peoplestore.generated");
+// Create the Unmarshaller Object using the JaxB Context
+Unmarshaller unMarshaller = jaxbContext.createUnmarshaller();
+SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
+Schema schema = schemaFactory.newSchema(new File("people.xsd"));
+unMarshaller.setSchema(schema);
   ```
   
 Finally, it prints all the person in **people.xml** and their information.
+
 
 ## DEPLOYMENT
 First of all, it is necessary to run the following command on terminal window in the folder where the **build.xml** file is:
