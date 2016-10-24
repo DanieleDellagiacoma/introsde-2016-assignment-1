@@ -34,7 +34,7 @@ On the other hand, the second part of the assignment is based on the forth labor
 
 These classes are necessary to do the marshalling to XML and the unmarshalling from XML. The **XMLMarshaller.java** class handles the marshalling to XML, printing the content and saving it to **people.xml** file. The **XMLUnMarshaller.java** class handles the unmarshalling from **people.xml**.
 
-Moreover, they can be used also for marshalling to JSON thanks to **MOXy library**. Marshalling to **people.json** is done by the **JSONMarshaller.java** class.
+Moreover, they can be used also for marshalling to JSON thanks to **MOXy** library. Marshalling to **people.json** is done by the **JSONMarshaller.java** class.
 
 After completing these two parts of the assignment, it is necessary create a target in the **build.xml** file **execute.evaluation** which:
 
@@ -63,7 +63,7 @@ public void printPersonFromWeight(int weight, String operator) throws XPathExpre
   ```
 The method evaluates the compiled XPath expression in database.xml and returns the result in a list of node. Later, it prints the result.
 
-For the second part of the assign three different classes were used: **XMLMarshaller**, **XMLUnMarshaller** and **JSONMarshaller**. To work correctly, these classes need the classes generated from people.xsd using XJC.
+For the second part of the assign three different classes were used: **XMLMarshaller**, **XMLUnMarshaller** and **JSONMarshaller**. To work correctly, these classes need the classes generated from **people.xsd** using XJC.
 
 ### XMLMarshaller
 The **XMLMarshaller** instantiates a new JAXB Context. After that, it creates a new marshaller using the JAXB Context and set its properties.
@@ -159,6 +159,7 @@ Finally, it prints all the person in **people.xml** and their information.
 
 
 ## DEPLOYMENT
+
 First of all, it is necessary to run the following command on terminal window in the folder where the **build.xml** file is:
 ```sh
 ant compile
@@ -170,3 +171,7 @@ After that, the following command can be used to run all the instructions descri
 ```sh
 ant execute.evaluation
 ```
+
+The **build.xml** file has been implemented modifying the build.xml used during the forth laboratory. 
+
+
