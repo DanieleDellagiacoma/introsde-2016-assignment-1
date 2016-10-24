@@ -63,8 +63,13 @@ Finally, it prints all the person in **people.xml** and their information.
 
 ## DEPLOYMENT
 First of all, it is necessary to run the following command on terminal window in the folder where the **build.xml** file is:
-> ant compile
+```sh
+ant compile
+```
 
 This instruction will download **ivy.jar** into **ivy** folder, and all libraries that are specified in **ivi.xml** fil will be downloaded into lib folder. Moreover, the target generate creates the folder **bookstore/generated** with four classes in it (**HealthprofileType**, **ObjectFactory**, **PeopleType** and **PersonType**).
+
 After that, the following command can be used to run all the instructions described above.
-> ant execute.evaluation
+```sh
+ant execute.evaluation
+```
