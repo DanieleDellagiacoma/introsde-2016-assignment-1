@@ -3,7 +3,8 @@
 ## TASK
 
 This first assignment is divided in two main parts.
-The first part is based on the third laboratory session. In particular, it was required to work with XPath, a query language that uses path expressions to navigate the XML and queries information inside them. Moreover, this first part is divided in four points. For the first point it is necessary to use XPath to implement method **getWeight(personID)** and **getHeight(personID)**, which return weight (or height) of a person with that ID. Instead, make a function **printAll()** that prints all people in the database.xml with detail. The **database.xml** file contains 20 person and has the following structure:
+The first part is based on the third laboratory session. In particular, it was required to work with XPath, a query language that uses path expressions to navigate the XML and queries information inside them. This first part is moreover divided in four points.
+For the first point it is necessary to use XPath to implement method **getWeight(personID)** and **getHeight(personID)**, which return weight (or height) of a person with that ID. Instead, make a function **printAll()** that prints all people in the database.xml with detail. The **database.xml** file contains 20 person and has the following structure:
 
 
 ```xml
@@ -37,7 +38,8 @@ After completing these two parts of the assignment, it is necessary create a tar
 6. runs JSONMarshaller, it creates 3 persons using java and marshals them to JSON, printing the content and saving to people.json file.
 
 ## CODE
-The first part of the assignment has been implemented in the **XPathAdvance.java** class, which is based on the XPathTestAdvance seen in laboratory. Besides loading the **database.xml** file, the **XPathAdvance** class contains **getWeight(personID)**, **getHeight(personID)**, **printAll()**, **printHealthProfile(personID)** and **printPersonFromWeight(weight, operator)** methods. These methods work in almost the same way. For example, this is the **printPersonFromWeight(weight, operator)** method:
+The first part of the assignment has been implemented in the **XPathAdvance.java** class, which is based on the XPathTestAdvance seen in laboratory. Besides loading the **database.xml** file, the **XPathAdvance** class contains **getWeight(personID)**, **getHeight(personID)**, **printAll()**, **printHealthProfile(personID)** and **printPersonFromWeight(weight, operator)** methods. These methods work in almost the same way.
+For example, this is the **printPersonFromWeight(weight, operator)** method:
 ```java
 public void printPersonFromWeight(int weight, String operator) throws XPathExpressionException {
 		XPathExpression expr = xpath
