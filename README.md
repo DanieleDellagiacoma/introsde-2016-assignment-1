@@ -46,6 +46,7 @@ After completing these two parts of the assignment, it is necessary create a tar
 6. runs **JSONMarshaller**, it creates 3 persons using java and marshals them to JSON, printing the content and saving to **people.json** file.
 
 ## CODE
+### XPathAdvance
 The first part of the assignment has been implemented in the **XPathAdvance.java** class, which is based on the XPathTestAdvance seen in laboratory. Besides loading the **database.xml** file, the **XPathAdvance** class contains **getWeight(personID)**, **getHeight(personID)**, **printAll()**, **printHealthProfile(personID)** and **printPersonFromWeight(weight, operator)** methods. These methods work in almost the same way.
 
 For example, this is the **printPersonFromWeight(weight, operator)** method:
@@ -64,6 +65,7 @@ The method evaluates the compiled XPath expression in database.xml and returns t
 
 For the second part of the assign three different classes were used: **XMLMarshaller**, **XMLUnMarshaller** and **JSONMarshaller**. To work correctly, these classes need the classes generated from people.xsd using XJC.
 
+### XMLMarshaller
 The **XMLMarshaller** instantiates a new JAXB Context. After that, it creates a new marshaller using the JAXB Context and set its properties.
 ```java
 // Create a JaxBContext
@@ -112,7 +114,8 @@ marshaller.marshal(peopleElement, System.out);
 // Marshal the People object to XML and write the output to the people.xml file
 marshaller.marshal(peopleElement, new FileOutputStream(xmlDocument));
   ```
-  
+### JSONMarshaller
+
 The **JSONMarshaller** is the same as **XMLMarshaller**, except that it uses **MOXy** library to format the otput object as a json. It do that setting the **MarshallerProperties** in this way:
 
 ```java
@@ -128,7 +131,9 @@ For this reason is necessary to enable **MOXy** at the beginning
 //enables MOXy
 System.setProperty("javax.xml.bind.context.factory", "org.eclipse.persistence.jaxb.JAXBContextFactory");
   ```
-  
+
+### XMLUnMarshaller
+
 On the other hand, the **XMLUnMarshaller** create an JAXB context and the UnMarshaller object using the context. After that, it uses **people.xsd** schema to validate subsequent unmarshal operations. 
 
 ```java
