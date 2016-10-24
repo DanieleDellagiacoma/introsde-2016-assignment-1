@@ -30,18 +30,20 @@ The **database.xml** file contains 20 person and has the following structure:
 
 The third point concerns a function **printHealthProfile(personID)** that accepts an ID as parameter and prints the HealthProfile of the person with that ID. Finally, it is needed another function **printPersonFromWeight(weight, operator)** which accepts a weight and an operator (=, > or <) as parameters and prints people that fulfill that condition.
 
-On the other hand, the second part of the assignment is based on the forth laboratory session. This second part is about JAXB which allows to map XML to Java Classes. In particular, the first step concerns the creation of an **person.xsd** file (XML schema) from the XML document **database.xml**. Through this XSD file is possible to automatically generate four classes thanks to the Java compiler XJC. The classes, which will be generated in **peoplestore.generated** package, are **HealthprofileType.java**, **ObjectFactory.java**, **PeopleType.java** and **PersonType.java**. These classes are necessary to do the marshalling to XML and the unmarshalling from XML. The **XMLMarshaller.java** class handles the marshalling to XML, printing the content and saving it to **people.xml** file. The **XMLUnMarshaller.java** class handles the unmarshalling from **people.xml**.
+On the other hand, the second part of the assignment is based on the forth laboratory session. This second part is about JAXB which allows to map XML to Java Classes. In particular, the first step concerns the creation of an **person.xsd** file (XML schema) from the XML document **database.xml**. Through this XSD file is possible to automatically generate four classes thanks to the Java compiler XJC. The classes, which will be generated in **peoplestore.generated** package, are **HealthprofileType.java**, **ObjectFactory.java**, **PeopleType.java** and **PersonType.java**.
+
+These classes are necessary to do the marshalling to XML and the unmarshalling from XML. The **XMLMarshaller.java** class handles the marshalling to XML, printing the content and saving it to **people.xml** file. The **XMLUnMarshaller.java** class handles the unmarshalling from **people.xml**.
 
 Moreover, they can be used also for marshalling to JSON thanks to **MOXy library**. Marshalling to **people.json** is done by the **JSONMarshaller.java** class.
 
-After completing these two parts of the assignment, it is necessary create a target in the **build.xml** file execute.evaluation which:
+After completing these two parts of the assignment, it is necessary create a target in the **build.xml** file **execute.evaluation** which:
 
-1. runs printAll()
-2. runs printHealthProfile(personID) with ID = 5
-3. runs printPersonFromWeight(weight, operator) with weight > 90
-4. runs XMLMarshaller, it creates 3 persons using java and marshals them to XML, printing the content and saving to people.xml file
-5. runs XMLUnMarshaller, un-marshaling from people.xml
-6. runs JSONMarshaller, it creates 3 persons using java and marshals them to JSON, printing the content and saving to people.json file.
+1. runs **printAll()**
+2. runs **printHealthProfile(personID)** with ID = 5
+3. runs **printPersonFromWeight(weight, operator)** with weight > 90
+4. runs **XMLMarshaller**, it creates 3 persons using java and marshals them to XML, printing the content and saving to **people.xml** file
+5. runs **XMLUnMarshaller**, un-marshaling from **people.xml**
+6. runs **JSONMarshaller**, it creates 3 persons using java and marshals them to JSON, printing the content and saving to **people.json** file.
 
 ## CODE
 The first part of the assignment has been implemented in the **XPathAdvance.java** class, which is based on the XPathTestAdvance seen in laboratory. Besides loading the **database.xml** file, the **XPathAdvance** class contains **getWeight(personID)**, **getHeight(personID)**, **printAll()**, **printHealthProfile(personID)** and **printPersonFromWeight(weight, operator)** methods. These methods work in almost the same way.
