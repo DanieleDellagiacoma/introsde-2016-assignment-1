@@ -64,8 +64,7 @@ The method evaluates the compiled XPath expression in database.xml and returns t
 
 For the second part of the assign three different classes were used: **XMLMarshaller**, **XMLUnMarshaller** and **JSONMarshaller**. To work correctly, these classes need the classes generated from people.xsd using XJC.
 
-The **XMLMarshaller** instantiates a new JAXB Context. After that, it creates a new marshaller using the JAXB Context and set its properties. Now, people can be created through the generated classes using java.
-
+The **XMLMarshaller** instantiates a new JAXB Context. After that, it creates a new marshaller using the JAXB Context and set its properties.
 ```java
 // Create a JaxBContext
 JAXBContext jaxbContext = JAXBContext.newInstance("peoplestore.generated");
@@ -73,8 +72,35 @@ JAXBContext jaxbContext = JAXBContext.newInstance("peoplestore.generated");
 Marshaller marshaller = jaxbContext.createMarshaller();
 // Set it to true if you need the XML output to formatted
 marshaller.setProperty("jaxb.formatted.output", new Boolean(true));
-			
+```
+  
+Now, people can be created through the generated classes using java.
+```java
 ObjectFactory factory = new ObjectFactory();
+
+PeopleType people = factory.createPeopleType();
+
+PersonType person = factory.createPersonType();
+List<PersonType> personList = people.getPerson();
+			
+XMLGregorianCalendar randomBirthdate = DatatypeFactory.newInstance().newXMLGregorianCalendar(randomBirthdate());
+person.setBirthdate(randomBirthdate);
+person.setFirstname("Daniele");
+person.setId(1);
+person.setLastname("Dellagiacoma");
+HealthprofileType healthprofile = factory.createHealthprofileType();
+			
+GregorianCalendar c = new GregorianCalendar();
+c.setTime(new Date());
+XMLGregorianCalendar lastupdate = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+healthprofile.setLastupdate(lastupdate);
+healthprofile.setHeight(1.80);
+healthprofile.setWeight(70);
+healthprofile.setBmi(healthprofile.getWeight()/(Math.pow(healthprofile.getHeight(), 2)));
+
+person.setHealthprofile(healthprofile);
+
+personList.add(person);
   ```
   
 Finally, a JAXB Element of type People is created and used to print the content and save it to **people.xml** file.
